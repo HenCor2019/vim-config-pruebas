@@ -1,0 +1,16 @@
+[alias]
+	lon = log --oneline
+	s = status
+	cc = commit
+	br = branch
+	ch = checkout
+	last = log -1 HEAD
+	renameci = commit --amend -m
+	commits = log --oneline --graph --all
+[core]
+	editor = nvim
+[user]
+	name = Henry Cortez
+	email = Henry200amaya@gmail.com
+[credential]
+	helper = store
