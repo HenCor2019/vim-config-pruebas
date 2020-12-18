@@ -4,6 +4,7 @@ set number relativenumber
 syntax on
 set scrolloff=7
 set title
+set spelllang=en
 set cursorline
 set noshowmode
 set autoindent
@@ -41,7 +42,10 @@ Plug 'yuezk/vim-js'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'flowtype/vim-flow'
 
-" escritura
+" IDE
+Plug 'preservim/nerdcommenter'
+
+" Escritura
 Plug 'alvan/vim-closetag'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
@@ -57,7 +61,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 
 call plug#end()
-
 
 " iniciando en todos el autocompletado
 let g:closetag_filenames = '*.html,*.js,*.jsx,*.ts,*.tsx'
@@ -91,15 +94,19 @@ let g:lightline = {
       \}
       \}
 
+" para nerdtree commenter
+let g:NERDCreateDefaultMappings = 1
+let g:NERDSpaceDelims = 1
+let g:NERDCompactSexyComs = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDAltDelims_java = 1
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+let g:NERDCommentEmptyLines = 1
+let g:NERDTrimTrailingWhitespace = 1
+let g:NERDToggleCheckAllLines = 1
+
 "para lo de emmet
 let g:user_emmet_leader_key=','
-
-" cosas para el autocompletado
-" Activar deoplete al iniciar Neovim
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/UltiSnips']
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 
 let g:deoplete#enable_at_startup = 1
 let g:neosnippet#enable_completed_snippet = 1
@@ -154,9 +161,14 @@ nnoremap ? :let @/ = ""<CR>:call gruvbox#hls_show()<CR>?
 " para los files
 nmap <leader>fi :Files<CR>
 
-" para vim
-nmap <leader>gs :G<CR>
+" para git
+nmap <leader>G :G<CR>
 nmap <leader>ga :Gwrite<CR>
+nmap <leader>gp :Gpush<CR>
+nmap <leader>gl :Gpull<CR>
+nmap <leader>grd :Gread<CR>
+nmap <leader>gdf :Gdiff<CR>
+nmap <leader>glog :Glog<CR>
 
 " acciones de comodidad
 imap kk <Esc> 
@@ -170,18 +182,24 @@ nmap <leader>b <C-q>
 " accion de guardado
 nmap <leader>w :w<CR>
 nmap <leader>wq :wq<CR>
+nmap <leader>wa :wa<CR>
 nmap <leader>nq :q!<CR>
 
 " para las pestañas
-nmap <leader>tt :tabe
-nmap <leader>r :tabprevius<CR>
-nmap <leader>l :tabnext<CR>
+nmap <leader>tt :tabe 
+nmap <leader>r :tabprevious<CR>
+nmap <leader>l :tabNext<CR>
+nmap <leader>x :tabclose<CR>
 
 " abrir/cerrar NERDTree con F2
 map <F2> :NERDTreeToggle<CR>
 
 " copiar directamente al portapapeles
 vmap <C-c> "+yi
+
+" correr archivos compilados
+nmap <leader>jx :!node %<CR>
+nmap <leader>px :!python3 %<CR>
 
 highlight Normal ctermbg=NONE
 
@@ -195,6 +213,3 @@ let g:NERDTreeChDirMode = 2  " Cambia el directorio actual al nodo padre actual
 autocmd BufRead *.js set filetype=javascript.jsx
 autocmd BufRead *.jsx set filetype=javascript.jsx
 augroup filetype javascript syntax=javascript
-
-
-
