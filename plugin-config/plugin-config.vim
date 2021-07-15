@@ -6,7 +6,10 @@ let g:closetag_filenames = '*.html,*.js,*.jsx,*.ts,*.tsx'
 
 " background
 colorscheme gruvbox
+" colorscheme dracula
+
 let g:airline_theme='gruvbox'
+" let g:airline_theme='wombat'
 let g:gruvbox_contrast_dark='soft'
 
 let g:lightline = {
@@ -43,6 +46,8 @@ let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
 let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
+let g:NERDTreeIgnore = ['^node_modules$']
+let g:NERDTreeGitStatusUseNerdFonts = 1
 
 "para lo de emmet
 let g:user_emmet_leader_key=','
@@ -91,12 +96,43 @@ map <F2> :NERDTreeToggle<CR>
 " refrescar para nuevos archivos
 map <leader>R :NERDTreeRefreshRoot<CR>
 
+" las extensiones globales
+let g:coc_global_extensions = [ 'coc-css', 'coc-json', 'coc-snippets', 'coc-tsserver', 'coc-python' ]
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+      let col = col('.') - 1
+      return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+
+
+" vim cositas
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+      \ 'Modified'  :'✹',
+      \ 'Staged'    :'✚',
+      \ 'Untracked' :'✭',
+      \ 'Renamed'   :'➜',
+      \ 'Unmerged'  :'═',
+      \ 'Deleted'   :'✖',
+      \ 'Dirty'     :'✗',
+      \ 'Ignored'   :'☒',
+      \ 'Clean'     :'✔︎',
+      \ 'Unknown'   :'?',
+      \}
+
 " copiar directamente al portapapeles
 vmap <C-c> "+yi
 
 " correr archivos compilados
 nmap <leader>jx :!node %<CR>
-nmap <leader>px :!python3 %<CR>
+nmap <F3> :call RunPython()<CR>
 
 highlight Normal ctermbg=NONE
 
@@ -106,7 +142,67 @@ let g:airline#extensions#tabline#fnamemod = ':t' " Mostrar solo el nombre del ar
 " Acciones de nerdtree
 let g:NERDTreeChDirMode = 2  " Cambia el directorio actual al nodo padre actual
 
+" coc prettier
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+
 " Javascript
 autocmd BufRead *.js set filetype=javascript.jsx
 autocmd BufRead *.jsx set filetype=javascript.jsx
 augroup filetype javascript syntax=javascript
+
+" configuraciones de prettier
+let g:prettier#exec_cmd_path = "~/.config/nvim/prettier/.prettierrc.json"
+
+
+nmap <leader>f :PrettierAsync<CR>
+nmap <leader>p <Plug>(Prettier)
+
+let g:prettier#autoformat = 0
+let g:prettier#quickfix_enabled = 0
+" autocmd BufWrite *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+autocmd BufWrite *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html CocCommand prettier.formatFile
+
+" alternativa
+nmap <C-p> ggVG=<CR>
+
+:function RunPython()
+:write
+:!python3 %
+:endfunction
+
+" code spell
+vmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>a <Plug>(coc-codeaction-selected)
+
+
+" snippets
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" Use <leader>x for convert visual selected code to snippet
+xmap <leader>x  <Plug>(coc-convert-snippet)
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'

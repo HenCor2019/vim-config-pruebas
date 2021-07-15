@@ -1,0 +1,18 @@
+{
+"coc.preferences.formatOnSaveFiletypes": [
+  "css",
+  "markdown",
+  "javascript",
+  "python3"
+],
+"cSpell.userWords": [
+  "Contaduria",
+  "alvan",
+  "hola",
+  "jiangmiao",
+  "middlewares",
+  "mundo",
+  "tpope"
+]
+}
+

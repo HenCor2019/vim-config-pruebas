@@ -1,12 +1,14 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'morhetz/gruvbox'
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'mattn/emmet-vim'
 
 " indentado
 Plug 'Yggdroot/indentLine'
+Plug 'ryanoasis/vim-devicons'
 
 " autocompletado
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -27,6 +29,9 @@ Plug 'alvan/vim-closetag'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 
+" eslint
+Plug 'dense-analysis/ale'
+
 " multicursor 
 Plug 'terryma/vim-multiple-cursors'
 
@@ -39,5 +44,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/gv.vim'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
+" formateo
+" Plug 'prettier/vim-prettier', {
+"  \ 'do': 'yarn install',
+"  \ 'for': ['javascript', 'typescript', 'css', 'json', 'graphql', 'markdown', 'vue', 'html'] }
 
 call plug#end()

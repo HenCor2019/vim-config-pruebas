@@ -19,13 +19,16 @@ nnoremap ? :let @/ = ""<CR>:call gruvbox#hls_show()<CR>?
 nmap <leader>fi :Files<CR>
 
 " para git
-nmap <leader>G :G<CR>
+nmap <leader>gs :G<CR>
 nmap <leader>ga :Gwrite<CR>
 nmap <leader>gp :Gpush<CR>
 nmap <leader>gl :Gpull<CR>
 nmap <leader>grd :Gread<CR>
 nmap <leader>gdf :SignifyToggleHighlight<CR>
 nmap <leader>glog :Glog<CR>
+nmap <leader>gh :diffget //3<CR>
+nmap <leader>gu :diffget //2<CR>
+
 
 " acciones de comodidad
 imap kk <Esc> 
@@ -48,7 +51,20 @@ nmap <leader>r :tabprevious<CR>
 nmap <leader>l :tabNext<CR>
 nmap <leader>x :tabclose<CR>
 
+" creación de archivos
+nmap <leader>tf :!touch 
+nmap <leader>td :!mkdir  
+
 " para snippets
 imap <C-l> <Plug>(coc-snippets-expand)
 
 vmap <C-j> <Plug>(coc-snippets-select)
+
+" para refactor
+nmap <leader>rn <Plug>(coc-rename)
+
+
+" para cosas generales
+nmap ++ $
+vmap ++ $
+nmap .. <C-o>
