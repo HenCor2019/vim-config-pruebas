@@ -1,0 +1,11 @@
+{
+  "tsserver.trace.server": "verbose",
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "markdown",
+    "jsx",
+    "js",
+    "html",
+    "json"
+  ]
+}
