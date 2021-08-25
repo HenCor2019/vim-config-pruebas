@@ -1,9 +1,10 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 "Plug 'morhetz/gruvbox'
-Plug 'gruvbox-community/gruvbox'
-Plug 'arcticicestudio/nord-vim'
+" Plug 'gruvbox-community/gruvbox'
+" Plug 'arcticicestudio/nord-vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'joshdick/onedark.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'mattn/emmet-vim'
@@ -84,10 +85,11 @@ source ~/.config/nvim/plugins/git.vim
 " source ~/.config/nvim/plugins/neoformat.vim
 " source ~/.config/nvim/plugins/formatter.vim
 " source ~/.config/nvim/plugins/gruvbox.vim
-" source ~/.config/nvim/plugins/dracula.vim
+source ~/.config/nvim/plugins/dracula.vim
+source ~/.config/nvim/plugins/onedark.vim
 " source ~/.config/nvim/plugins/lsp.vim
 source ~/.config/nvim/plugins/coc.vim
-source ~/.config/nvim/plugins/nord.vim
+" source ~/.config/nvim/plugins/nord.vim
 source ~/.config/nvim/plugins/multicursor.vim
 source ~/.config/nvim/plugins/nerdtree.vim
 source ~/.config/nvim/plugins/telescope.vim

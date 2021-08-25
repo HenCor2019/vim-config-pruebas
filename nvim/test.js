@@ -10,5 +10,3 @@ sayHello();
 function eat(name) {
   return "hello";
 }
-
-comer.pito();
