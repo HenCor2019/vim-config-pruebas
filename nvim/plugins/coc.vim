@@ -20,7 +20,7 @@ set updatetime=300
 set shortmess+=c
 
 " las extensiones globales
-let g:coc_global_extensions = [ 'coc-css', 'coc-json', 'coc-snippets', 'coc-tsserver', 'coc-python', 'coc-prettier' ]
+let g:coc_global_extensions = [ 'coc-css', 'coc-json', 'coc-python', 'coc-prettier', 'coc-spell-checker', 'coc-tsserver' ]
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
@@ -166,7 +166,8 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 " nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
- 
+:nnoremap <space>e :CocCommand explorer<CR>
+
 let g:prettier#autoformat = 0
 let g:prettier#quickfix_enabled = 0
 

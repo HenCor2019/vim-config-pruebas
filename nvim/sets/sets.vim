@@ -19,6 +19,7 @@ set smartcase        " ... unless they contain at least one capital lett
 set termguicolors
 hi Normal guibg=NONE ctermbg=NONE
 filetype plugin indent on
+set nowrap
 
 " opciones de coc que ni idea pero recomiendan ponerlas
 " TextEdit might fail if hidden is not set.

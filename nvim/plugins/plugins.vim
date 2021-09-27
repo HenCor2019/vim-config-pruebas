@@ -8,7 +8,6 @@ Plug 'joshdick/onedark.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'mattn/emmet-vim'
-
 " Neovim Tree shitter
 " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Plug 'nvim-treesitter/playground'
@@ -16,10 +15,12 @@ Plug 'mattn/emmet-vim'
 
 " indentado
 "Plug 'Yggdroot/indentLine'
-"Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons'
 
 " autocompletado
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'rodrigore/coc-tailwind-intellisense', {'do': 'npm install'}
+
 " Plug 'honza/vim-snippets'
 " Plug 'neovim/nvim-lspconfig'
 " Plug 'hrsh7th/nvim-compe'
@@ -30,7 +31,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'hrsh7th/vim-vsnip-integ'
 
 " sintaxis
-" Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot'
 " Plug 'HerringtonDarkholme/yats.vim'
 Plug 'yuezk/vim-js'
 Plug 'maxmellon/vim-jsx-pretty'
@@ -82,6 +83,7 @@ call plug#end()
 source ~/.config/nvim/plugins/airline.vim
 source ~/.config/nvim/plugins/eslint.vim
 source ~/.config/nvim/plugins/git.vim
+source ~/.config/nvim/plugins/surround.vim
 " source ~/.config/nvim/plugins/neoformat.vim
 " source ~/.config/nvim/plugins/formatter.vim
 " source ~/.config/nvim/plugins/gruvbox.vim
@@ -91,7 +93,8 @@ source ~/.config/nvim/plugins/onedark.vim
 source ~/.config/nvim/plugins/coc.vim
 " source ~/.config/nvim/plugins/nord.vim
 source ~/.config/nvim/plugins/multicursor.vim
-source ~/.config/nvim/plugins/nerdtree.vim
+"source ~/.config/nvim/plugins/nerdtree.vim
+source ~/.config/nvim/lua/nerd-tree.lua.
 source ~/.config/nvim/plugins/telescope.vim
 source ~/.config/nvim/plugins/emmet.vim
 source ~/.config/nvim/plugins/spell.vim

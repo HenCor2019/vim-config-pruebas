@@ -3,7 +3,7 @@ nmap <leader>tf :!touch
 nmap <leader>td :!mkdir  
 
 " para cosas generales
-nmap ++ $
-vmap ++ $
+map ++ $
 nmap .. <C-o>
+nmap <leader>pf :e #<CR>
 

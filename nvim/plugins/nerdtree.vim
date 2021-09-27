@@ -1,4 +1,3 @@
-" para nerdtree commenter
 let g:NERDCreateDefaultMappings = 1
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
@@ -11,12 +10,11 @@ let g:NERDToggleCheckAllLines = 1
 let g:NERDTreeIgnore = ['^node_modules$']
 let g:NERDTreeGitStatusUseNerdFonts = 1
 
-" configuraciones de indentado
 let g:indentLine_fileTypeExclude = ['text', 'sh', 'help', 'terminal']
 let g:indentLine_bufNameExclude = ['NERD_tree.*', 'term:.*']
 
-" Cerrar automaticamente la ventana de vista previa (donde se muestra
-" documentación, si existe)
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
 
 augroup deopleteCompleteDoneAu
   autocmd!
@@ -24,11 +22,10 @@ augroup deopleteCompleteDoneAu
 augroup END
 
 
-" correr archivos compilados
-nmap <F4> :call RunJS()<CR>
 nmap <F3> :call RunPython()<CR>
+nmap <F4> :call RunJS()<CR>
+nmap <F5> :call RunCPP()<CR>
 
-" Acciones de nerdtree
 let g:NERDTreeChDirMode = 2  " Cambia el directorio actual al nodo padre actual
 
 :function RunPython()
@@ -39,4 +36,9 @@ endfunction
 :function RunJS()
 :write
 :!node %
+:endfunction
+
+:function RunCPP()
+:write
+:!g++ -o file % && ./file
 :endfunction

@@ -1,5 +1,4 @@
 colorscheme gruvbox
-
 let g:airline_theme='gruvbox'
 let g:gruvbox_contrast_dark='soft'
 

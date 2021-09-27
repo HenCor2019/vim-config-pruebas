@@ -4,7 +4,7 @@ let g:airline#extensions#tabline#fnamemod = ':t' " Mostrar solo el nombre del ar
 
 let g:lightline = {
       \ 'active': {
-      \   'left': [['mode', 'paste'], [], ['relativepath', 'modified']]
+      \   'left': [['mode', 'paste'], ['gitbranch', 'readonly','relativepath', 'modified']]
       \},
       \ 'inactive': {
       \   'left': [['inactive'], ['relativepath']],
@@ -12,7 +12,7 @@ let g:lightline = {
       \},
       \ 'component': {
       \   'bufnum': '%n',
-      \   'inactive': 'inactive'
+      \   'inactive': 'aiinactive'
       \},
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head'
