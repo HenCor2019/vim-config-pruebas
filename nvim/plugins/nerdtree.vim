@@ -22,9 +22,9 @@ augroup deopleteCompleteDoneAu
 augroup END
 
 
-nmap <F3> :call RunPython()<CR>
-nmap <F4> :call RunJS()<CR>
-nmap <F5> :call RunCPP()<CR>
+nmap <leader><Space>p :call RunPython()<CR>
+nmap <leader><Space>j :call RunJS()<CR>
+nmap <leader><Space><Space> :call RunCPP()<CR>
 
 let g:NERDTreeChDirMode = 2  " Cambia el directorio actual al nodo padre actual
 

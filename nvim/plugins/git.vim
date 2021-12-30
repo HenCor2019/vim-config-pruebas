@@ -8,16 +8,16 @@ nmap <leader>gh :diffget //3<CR>
 nmap <leader>gu :diffget //2<CR>
 
 " SEE STAGED OR COMMITED FILES
-" let g:NERDTreeGitStatusIndicatorMapCustom = {
-"       \ 'Modified'  :'✹',
-"       \ 'Staged'    :'✚',
-"       \ 'Untracked' :'✭',
-"       \ 'Renamed'   :'➜',
-"       \ 'Unmerged'  :'═',
-"       \ 'Deleted'   :'✖',
-"       \ 'Dirty'     :'✗',
-"       \ 'Ignored'   :'☒',
-"       \ 'Clean'     :'✔︎',
-"       \ 'Unknown'   :'?',
-"       \}
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+      \ 'Modified'  :'✹',
+      \ 'Staged'    :'✚',
+      \ 'Untracked' :'✭',
+      \ 'Renamed'   :'➜',
+      \ 'Unmerged'  :'═',
+      \ 'Deleted'   :'✖',
+      \ 'Dirty'     :'✗',
+      \ 'Ignored'   :'☒',
+      \ 'Clean'     :'✔︎',
+      \ 'Unknown'   :'?',
+      \}
 

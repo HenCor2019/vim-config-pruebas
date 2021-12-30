@@ -10,6 +10,6 @@ nnoremap n nzzzv<CR>
 nnoremap N Nzzzv<CR>
 
 " abrir/cerrar NERDTree con F2
-map <F2> :NERDTreeToggle<CR>
+nnoremap <C-c> :NERDTreeToggle<CR>
 " refrescar para nuevos archivos
 map <leader>R :NERDTreeRefreshRoot<CR>

@@ -12,9 +12,14 @@ require("telescope").setup({
 
         mappings = {
             i = { 
-                ["<C-x>"] = false, 
+                ["<C-x>"] = actions.select_vertical, 
+                ["<Esc>"] = actions.close,
                 ["<C-q>"] = actions.send_to_qflist,
             },
+
+            n = {
+                ["<C-x>"] = actions.select_vertical
+            }
         },
     },
     extensions = {

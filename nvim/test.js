@@ -1,9 +1,6 @@
 import sayHello from "./ejemplo";
 
-const a = {
-  a: true,
-  c: false,
-};
+const a = { a: true, c: false, d: true };
 
 sayHello();
 
