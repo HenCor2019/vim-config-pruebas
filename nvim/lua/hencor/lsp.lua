@@ -20,13 +20,21 @@ local function on_attach()
     -- the new snippet for the floating
     -- vim.api.nvim_set_keymap('n', '<leader>vsh', ':lua vim.lsp.buf.signature_help()<cr>', {noremap = true})
     
-    -- require'lsp_signature'.on_attach() -- no need to specify bufnr if you don't use toggle_key
-
-    vim.cmd [[au Filetype php setl omnifunc=v:lua.vim.lsp.omnifunc]]
-    vim.cmd [[autocmd FileType go setlocal omnifunc=v:lua.vim.lsp.omnifunc]]
+    require'lsp_signature'.on_attach() -- no need to specify bufnr if you don't use toggle_key
+    --require'lspconfig'.tsserver.setup({
+            --on_attach = function(client)
+                --client.resolved_capabilities.document_formatting = false
+            --end
+    --})
+    --vim.cmd [[au Filetype php setl omnifunc=v:lua.vim.lsp.omnifunc]]
+    --vim.cmd [[autocmd FileType go setlocal omnifunc=v:lua.vim.lsp.omnifunc]]
 
     vim.g.completion_matching_strategy_list = { 'exact', 'substring', 'fuzzy' }
-
+    vim.diagnostic.config({
+      virtual_text = {
+        prefix = 'ﯙ ', -- Could be '●', '▎', 'x' 
+      }
+    })
 end
 
 local lsp_installer = require("nvim-lsp-installer")
@@ -43,4 +51,9 @@ lsp_installer.on_server_ready(function(server)
     -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
     server:setup(opts)
     vim.cmd [[ do User LspAttachBuffers ]]
+    local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+    for type, icon in pairs(signs) do
+      local hl = "DiagnosticSign" .. type
+      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+    end
 end)
