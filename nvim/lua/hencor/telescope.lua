@@ -1,10 +1,19 @@
 local actions = require("telescope.actions")
+local action_state = require("telescope.actions.state")
+local fb_actions = require("telescope").extensions.file_browser.actions
 
 require("telescope").setup({
     defaults = {
         file_sorter = require("telescope.sorters").get_fzy_sorter,
-        prompt_prefix = " >",
+        prompt_prefix = "❯ ",
+        selection_caret = "❯ ",
         color_devicons = true,
+        scroll_strategy = "cycle",
+        sorting_strategy = "descending",
+        selection_strategy = "reset",
+        layout_config = {
+                prompt_position = "top"
+        },
 
         file_previewer = require("telescope.previewers").vim_buffer_cat.new,
         grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
@@ -12,13 +21,14 @@ require("telescope").setup({
 
         mappings = {
             i = { 
-                ["<C-x>"] = actions.select_vertical, 
+                ["<C-v>"] = actions.select_vertical, 
+                ["<C-h>"] = actions.select_horizontal, 
                 ["<Esc>"] = actions.close,
                 ["<C-q>"] = actions.send_to_qflist,
             },
 
             n = {
-                ["<C-x>"] = actions.select_vertical
+                ["<C-v>"] = actions.select_vertical
             }
         },
     },
@@ -27,10 +37,18 @@ require("telescope").setup({
             override_generic_sorter = false,
             override_file_sorter = true,
         },
+
+        fzf_writer = {
+            use_highlighter = false,
+            minimum_grep_characters = 6,
+        },
     },
 })
 
 require("telescope").load_extension("fzy_native")
+require("telescope").load_extension("file_browser")
+
+vim.api.nvim_set_keymap("n", "<leader>fb", ":Telescope file_browser<cr>", { noremap = true })
 
 local M = {}
 M.search_dotfiles = function()
@@ -43,7 +61,7 @@ end
 
 local function set_background(content)
     vim.fn.system(
-        "dconf write /org/mate/desktop/background/picture-filename \"'"
+        "dconf write /home/henryc/Imágenes/ \"'"
             .. content
             .. "'\""
     )
@@ -119,6 +137,54 @@ M.git_branches = function()
             return true
         end,
     })
+end
+
+M.file_browser_relative = function()
+	return M.file_browser({ path = "%:p:h" })
+end
+
+M.file_browser = function(opts)
+ opts = opts or {}
+
+ opts = {
+  path = opts.path,
+  sorting_strategy = "ascending",
+  scroll_strategy = "cycle",
+  layout_config = {
+   prompt_position = "top",
+  },
+
+  attach_mappings = function(prompt_bufnr, map)
+   local current_picker = action_state.get_current_picker(prompt_bufnr)
+
+   local modify_cwd = function(new_cwd)
+    local finder = current_picker.finder
+
+    finder.path = new_cwd
+    finder.files = true
+    current_picker:refresh(false, { reset_prompt = true })
+   end
+
+   map("n", "-", function()
+    modify_cwd(current_picker.cwd .. "/..")
+   end)
+
+   map("i", "~", function()
+    modify_cwd(vim.fn.expand("~"))
+   end)
+
+   map("n", "yy", function()
+    local entry = action_state.get_selected_entry()
+    vim.fn.setreg("+", entry.value)
+   end)
+
+   map("i", "<c-y>", fb_actions.create)
+
+   return true
+  end,
+ }
+
+	return require("telescope").extensions.file_browser.file_browser(opts)
 end
 
 return M

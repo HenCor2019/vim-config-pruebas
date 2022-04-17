@@ -5,6 +5,8 @@ require'nvim-tree'.setup {
   ignore = { '.git', 'node_modules', '.cache', '.vim' },
   hijack_netrw        = true,
   open_on_setup       = false,
+  auto_close          = 1,
+  quit_on_open        = 0,
   ignore_ft_on_setup  = {'.git', 'node_modules', '.cache', '.vim'},
   auto_close          = false,
   open_on_tab         = false,
@@ -33,6 +35,7 @@ require'nvim-tree'.setup {
       deleted = '',
       ignored = '◌',
     },
+    lsp = { hint = ' ', info = ' ', warning = ' ', error = ' ' },
   },
   update_focused_file = {
     enable      = false,

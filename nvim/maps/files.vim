@@ -8,12 +8,8 @@ nnoremap <leader>k :m .-2<CR>==
 nnoremap <leader>j :m .+1<CR>==
 nnoremap n nzzzv<CR>
 nnoremap N Nzzzv<CR>
+inoremap $ $<c-g>u
+inoremap > ><c-g>u
 
-nnoremap <C-c> :NvimTreeToggle<CR>
-nnoremap <leader>R :NvimTreeRefresh<CR>
-"nnoremap <leader>n :NvimTreeFindFile<CR>
-
-" abrir/cerrar NERDTree con F2
-"nnoremap <C-c> :NERDTreeToggle<CR>
-" refrescar para nuevos archivos
-"map <leader>R :NERDTreeRefreshRoot<CR>
+vnoremap < <gv
+vnoremap > >gv
