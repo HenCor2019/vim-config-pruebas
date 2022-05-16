@@ -8,7 +8,7 @@ return require("packer").startup(function(use)
 		local plug_path, home
 		if second == nil then
 			plug_path = first
-			home = "adalessa"
+			home = "henryc"
 		else
 			plug_path = second
 			home = first
@@ -65,12 +65,12 @@ return require("packer").startup(function(use)
 		},
 	})
 
-	use({
-		"windwp/nvim-projectconfig",
-		config = function()
-			require("nvim-projectconfig").setup()
-		end,
-	})
+--	use({
+	--	"windwp/nvim-projectconfig",
+		--config = function()
+			--require("nvim-projectconfig").setup()
+		--end,
+	--})
 
 	-- Completition
 	use({
@@ -111,19 +111,19 @@ return require("packer").startup(function(use)
 		},
 	})
 
-	use({
-		"ThePrimeagen/git-worktree.nvim",
-		config = function()
-			require("git-worktree").setup({})
-		end,
-	})
+	--use({
+		--"ThePrimeagen/git-worktree.nvim",
+		--config = function()
+			--require("git-worktree").setup({})
+		--end,
+	--})
 
-	use({
-		"norcalli/nvim-colorizer.lua",
-		config = function()
-			require("colorizer").setup({})
-		end,
-	})
+	--use({
+		--"norcalli/nvim-colorizer.lua",
+		--config = function()
+			--require("colorizer").setup({})
+		--end,
+	--})
 
 	use({
 		"nvim-lualine/lualine.nvim",

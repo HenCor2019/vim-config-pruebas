@@ -5,7 +5,7 @@ end
 
 lualine.setup{
     options = {
-      theme = 'nordfox',
+      theme = 'nord',
       icons_enabled = true,
       globalstatus = true,
     },

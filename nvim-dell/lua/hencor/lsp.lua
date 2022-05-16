@@ -2,12 +2,6 @@ local telescope_mapper = require("hencor.telescope.mappings")
 
 local filetype_attach = setmetatable({
 	go = function(_)
-		vim.cmd([[
-      augroup lsp_buf_format
-        au! BufWritePre <buffer>
-        autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()
-      augroup END
-    ]])
 	end,
 }, {
 	__index = function()
@@ -17,6 +11,8 @@ local filetype_attach = setmetatable({
 
 local function on_attach(client)
 	local filetype = vim.api.nvim_buf_get_option(0, "filetype")
+
+client.resolved_capabilities.document_formatting = false
 	-- keymaps for lsp
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
 	vim.keymap.set("n", "<c-]>", vim.lsp.buf.definition, { buffer = 0 })

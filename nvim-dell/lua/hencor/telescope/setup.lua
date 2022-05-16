@@ -130,7 +130,14 @@ require("telescope").setup {
       use_highlighter = false,
       minimum_grep_characters = 6,
     },
-
+    extensions = {
+      media_files = {
+          -- filetypes whitelist
+          -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
+          filetypes = {"png", "webp", "jpg", "jpeg"},
+          find_cmd = "rg" -- find command (defaults to `fd`)
+        }
+    },
     hop = {
       -- keys define your hop keys in order; defaults to roughly lower- and uppercased home row
       keys = { "a", "s", "d", "f", "g", "h", "j", "k", "l", ";" }, -- ... and more
@@ -163,11 +170,11 @@ _ = require("telescope").load_extension "dap"
 _ = require("telescope").load_extension "notify"
 _ = require("telescope").load_extension "file_browser"
 _ = require("telescope").load_extension "ui-select"
--- _ = require("telescope").load_extension "fzf"
-_ = require("telescope").load_extension "git_worktree"
+_ = require("telescope").load_extension "fzf"
+-- _ = require("telescope").load_extension "git_worktree"
 -- _ = require("telescope").load_extension "neoclip"
 -- _ = require("telescope").load_extension "frecency"
 -- _ = require("telescope").load_extension "smart_history"
-_ = require("telescope").load_extension "projectionist"
+-- _ = require("telescope").load_extension "projectionist"
 -- _ = require("telescope").load_extension "laravel"
 _ = require("telescope").load_extension("refactoring")

@@ -2,8 +2,7 @@ set nu
 set relativenumber
 set hidden
 set expandtab
-set tabstop=4 softtabstop=4
-set shiftwidth=4
+set tabstop=1 softtabstop=0 expandtab shiftwidth=2 smarttab
 set smartindent
 set noerrorbells
 set nowrap

@@ -134,12 +134,6 @@ _G.packer_plugins = {
     path = "/home/henryc/.local/share/nvim/site/pack/packer/start/fzf.vim",
     url = "https://github.com/junegunn/fzf.vim"
   },
-  ["git-worktree.nvim"] = {
-    config = { "\27LJ\2\2>\0\0\2\0\3\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0004\1\0\0B\0\2\1K\0\1\0\nsetup\17git-worktree\frequire\0" },
-    loaded = true,
-    path = "/home/henryc/.local/share/nvim/site/pack/packer/start/git-worktree.nvim",
-    url = "https://github.com/ThePrimeagen/git-worktree.nvim"
-  },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/home/henryc/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
@@ -197,12 +191,6 @@ _G.packer_plugins = {
     path = "/home/henryc/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
-  ["nvim-colorizer.lua"] = {
-    config = { "\27LJ\2\2;\0\0\2\0\3\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0004\1\0\0B\0\2\1K\0\1\0\nsetup\14colorizer\frequire\0" },
-    loaded = true,
-    path = "/home/henryc/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
-    url = "https://github.com/norcalli/nvim-colorizer.lua"
-  },
   ["nvim-dap"] = {
     loaded = true,
     path = "/home/henryc/.local/share/nvim/site/pack/packer/start/nvim-dap",
@@ -232,12 +220,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/henryc/.local/share/nvim/site/pack/packer/start/nvim-notify",
     url = "https://github.com/rcarriga/nvim-notify"
-  },
-  ["nvim-projectconfig"] = {
-    config = { "\27LJ\2\2@\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\23nvim-projectconfig\frequire\0" },
-    loaded = true,
-    path = "/home/henryc/.local/share/nvim/site/pack/packer/start/nvim-projectconfig",
-    url = "https://github.com/windwp/nvim-projectconfig"
   },
   ["nvim-treesitter"] = {
     loaded = true,
@@ -312,12 +294,12 @@ _G.packer_plugins = {
   ["telescope-laravel.nvim"] = {
     loaded = true,
     path = "/home/henryc/.local/share/nvim/site/pack/packer/start/telescope-laravel.nvim",
-    url = "https://github.com/adalessa/telescope-laravel.nvim"
+    url = "https://github.com/henryc/telescope-laravel.nvim"
   },
   ["telescope-projectionist.nvim"] = {
     loaded = true,
     path = "/home/henryc/.local/share/nvim/site/pack/packer/start/telescope-projectionist.nvim",
-    url = "https://github.com/adalessa/telescope-projectionist.nvim"
+    url = "https://github.com/henryc/telescope-projectionist.nvim"
   },
   ["telescope-ui-select.nvim"] = {
     loaded = true,
@@ -440,18 +422,6 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: git-worktree.nvim
-time([[Config for git-worktree.nvim]], true)
-try_loadstring("\27LJ\2\2>\0\0\2\0\3\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0004\1\0\0B\0\2\1K\0\1\0\nsetup\17git-worktree\frequire\0", "config", "git-worktree.nvim")
-time([[Config for git-worktree.nvim]], false)
--- Config for: nvim-projectconfig
-time([[Config for nvim-projectconfig]], true)
-try_loadstring("\27LJ\2\2@\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\23nvim-projectconfig\frequire\0", "config", "nvim-projectconfig")
-time([[Config for nvim-projectconfig]], false)
--- Config for: nvim-colorizer.lua
-time([[Config for nvim-colorizer.lua]], true)
-try_loadstring("\27LJ\2\2;\0\0\2\0\3\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0004\1\0\0B\0\2\1K\0\1\0\nsetup\14colorizer\frequire\0", "config", "nvim-colorizer.lua")
-time([[Config for nvim-colorizer.lua]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)

@@ -24,17 +24,12 @@ vnoremap > >gv
 inoremap ii <esc>
 vnoremap <leader>s :!sort<CR>
 
-nnoremap <leader>wh :wincmd h<CR>
-nnoremap <leader>wj :wincmd j<CR>
-nnoremap <leader>wk :wincmd k<CR>
-nnoremap <leader>wl :wincmd l<CR>
-nnoremap <leader>wq :wincmd q<CR>
-
 " Make windows to be basically the same size
 nnoremap <leader>= <C-w>=
 
-nnoremap sv :vsp<CR>
-nnoremap ss :sp<CR>
+nnoremap ss :split<Return><C-w>w
+nnoremap sv :vsplit<Return><C-w>w
+nnoremap <Space> <C-w>w
 
 nnoremap <leader>j :cnext<CR>
 nnoremap <leader>k :cprev<CR>
@@ -44,7 +39,10 @@ nnoremap <leader>o :lprev<CR>
 
 nnoremap <leader>bd :bd!<CR>
 
+
 nnoremap <expr> <leader>dp ":saveas " .  expand('%')
+nnoremap <leader>w :w<CR>
+nnoremap <leader>nq :q!<CR>
 
 " For moving quickly up and down,
 " Goes to the first line above/below that isn't whitespace
@@ -71,5 +69,3 @@ if has('nvim')
     tnoremap <S-Space> <Space>
     tnoremap <C-Space> <Space>
 endif
-
-nnoremap <leader><leader>x :call alpha#save_and_exec()<cr>
