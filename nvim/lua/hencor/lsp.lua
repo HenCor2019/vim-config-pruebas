@@ -1,47 +1,68 @@
-local opts = { noremap = true, silent = true }
+local telescope_mapper = require("hencor.telescope.mappings")
 
-local function on_attach(client, bufnr)
-    -- keymaps for lsp
-    vim.api.nvim_set_keymap('n', 'K', ':lua vim.lsp.buf.hover()<cr>', opts)
-    vim.api.nvim_set_keymap('n', 'gd', ':lua vim.lsp.buf.definition()<cr>', opts)
-    --client.resolved_capabilities.document_formatting = false
-    --client.resolved_capabilities.document_range_formatting = false
+local filetype_attach = setmetatable({
+	go = function(_)
+	end,
+}, {
+	__index = function()
+		return function() end
+	end,
+})
 
+local function on_attach(client,bufnr)
+	local filetype = vim.api.nvim_buf_get_option(0, "filetype")
 
-    vim.api.nvim_set_keymap('n', '<leader>vo', ':LspRestart<cr>', opts)
+client.server_capabilities.document_formatting = false
+	-- keymaps for lsp
+	vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
+	vim.keymap.set("n", "<c-]>", vim.lsp.buf.definition, { buffer = 0 })
+	vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, { buffer = 0 })
+	vim.keymap.set("n", "<leader>vf", vim.lsp.buf.formatting, { buffer = 0 })
+	vim.keymap.set("n", "<leader>vn", vim.diagnostic.goto_next, { buffer = 0 })
+	vim.keymap.set("n", "<leader>vp", vim.diagnostic.goto_prev, { buffer = 0 })
+	vim.keymap.set("i", "<c-k>", vim.lsp.buf.signature_help, { buffer = 0 })
+	vim.keymap.set("n", "<leader>vo", ":LspRestart<cr>", { noremap = true })
 
-    -- diagnostics to move between info and errors
-    vim.api.nvim_set_keymap('n', '<leader>vn', ':lua vim.lsp.diagnostic.goto_next()<cr>', opts)
-    vim.api.nvim_set_keymap('n', '<leader>vp', ':lua vim.lsp.diagnostic.goto_prev()<cr>', opts)
+	telescope_mapper("gr", "lsp_references", nil, true)
+	telescope_mapper("<leader>pv", "find_symbol", nil, true)
+	telescope_mapper("<leader>pd", "lsp_document_symbols", nil, true)
+ telescope_mapper("<leader>vca", "lsp_code_actions", nil, true)
 
-    vim.api.nvim_set_keymap('n', '<leader>vca', ':lua vim.lsp.buf.code_action()<cr>', opts)
-    vim.api.nvim_set_keymap('n', '<leader>vf', ':lua vim.lsp.buf.formatting()<cr>', opts)
+ -- local ts_utils = require("nvim-lsp-ts-utils")
+ -- ts_utils.setup({})
+ -- ts_utils.setup_client(client)
 
-    vim.api.nvim_set_keymap('n', '<leader>vi', ':lua vim.lsp.buf.implementation()<cr>', opts)
-    vim.api.nvim_set_keymap('n', '<leader>vrn', ':lua vim.lsp.buf.rename()<cr>', opts)
+	vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 
-    require'lsp_signature'.on_attach() -- no need to specify bufnr if you don't use toggle_key
-
-    vim.g.completion_matching_strategy_list = { 'exact', 'substring', 'fuzzy' }
-    vim.diagnostic.config({
-      virtual_text = {
-        prefix = 'ﯙ ', -- Could be '●', '▎', 'x' 
-      }
-    })
+	-- Attach any filetype specific options to the client
+	filetype_attach[filetype](client)
 end
 
 local lsp_installer = require("nvim-lsp-installer")
 
 lsp_installer.on_server_ready(function(server)
-    local opts = {}
+	local opts = {}
 
-    opts.on_attach = on_attach
-    -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
-    server:setup(opts)
-    vim.cmd [[ do User LspAttachBuffers ]]
-    local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-    for type, icon in pairs(signs) do
-      local hl = "DiagnosticSign" .. type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-    end
+	-- (optional) Customize the options passed to the server
+	if server.name == "emmet_ls" then
+		opts.filetypes = { "html", "css", "blade", "typescriptreact" }
+	end
+
+	opts.on_attach = on_attach
+	-- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
+	server:setup(opts)
+	vim.cmd([[ do User LspAttachBuffers ]])
 end)
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+	underline = true,
+	update_in_insert = false,
+	virtual_text = { spacing = 2, prefix = "●" },
+	severity_sort = true,
+})
+
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
